@@ -1,0 +1,278 @@
+	AREA codigo,CODE, READONLY
+	ENTRY
+	EXPORT Start
+		
+Start
+	
+Variables
+	; Ingresar en los registros números de por lo menos 4 dígitos
+	; Al ingresar un número con menos dígitos a 4, se detiene el programa
+	VLDR.F32 S0, = 1000 ; INGRESE PRIMER NÚMERO
+	VLDR.F32 S1, = 2000 ; INGRESE SEGUNDO NÚMERO
+	VLDR.F32 S2, = 3000 ; INGRESE TERCER NÚMERO
+	VLDR.F32 S3, = 0 ; INGRESE CUARTO NÚMERO
+	VLDR.F32 S4, = 0 ; INGRESE QUINTO NÚMERO
+	VLDR.F32 S5, = 4000; INGRESE SEXTO NÚMERO
+	VLDR.F32 S6, = 8045 ; INGRESE SEPTIMO NÚMERO
+	VLDR.F32 S7, = 6420 ; INGRESE OCTAVO NÚMERO
+	VLDR.F32 S8, = 0 ; INGRESE NOVENO NÚMERO
+	VLDR.F32 S9, = 1000 ; INGRESE DECIMO NÚMERO
+	VLDR.F32 S10, = 0 ; INGRESE NÚMERO OPCIONAL 1
+	VLDR.F32 S11, = 0 ; INGRESE NÚMERO OPCIONAL 2
+	VLDR.F32 S12, = 0 ; INGRESE NÚMERO OPCIONAL 3
+	VLDR.F32 S13, = 3312 ; INGRESE NÚMERO OPCIONAL 4
+	VLDR.F32 S14, = 10054 ; INGRESE NÚMERO OPCIONAL 5
+	VLDR.F32 S15, = 9103 ; INGRESE NÚMERO OPCIONAL 6
+	
+	VLDR.F32 S17, = 16 ;Constante para contador
+	
+	;Constantes para comprobaciones
+	VLDR.F32 S29, = 1
+	VLDR.F32 S30, = 999 ; 
+	VLDR.F32 S31, = 0 ; 
+	
+;COMPROBACIÓN DE QUE LOS NÚMEROS SEAN DE 4 CIFRAS O MÁS.
+;Suficos de condición utilizados:
+;BHI MAYOR QUE
+;BLE MENOR O IGUAL QUE
+;BEQ IGUAL
+;BNE DISTINTO
+Comprobacion1 
+	VCMP.F32 S0, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion2
+	BLE Comp1
+Comp1
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S0, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion2
+	BNE TERMINAR
+	
+	
+Comprobacion2
+	VCMP.F32 S1, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion3
+	BLE Comp2
+Comp2
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S1, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion3
+	BNE TERMINAR
+
+
+Comprobacion3
+	VCMP.F32 S2, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion4
+	BLE Comp3
+Comp3
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S2, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion4
+	BNE TERMINAR
+
+	
+Comprobacion4
+	VCMP.F32 S3, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion5
+	BLE Comp4
+Comp4
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S3, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion5
+	BNE TERMINAR
+
+
+Comprobacion5
+	VCMP.F32 S4, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion6
+	BLE Comp5
+Comp5
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S4, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion6
+	BNE TERMINAR
+
+	
+Comprobacion6
+	VCMP.F32 S5, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion7
+	BLE Comp6
+Comp6
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S5, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion7
+	BNE TERMINAR
+
+	
+Comprobacion7
+	VCMP.F32 S6, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion8
+	BLE Comp7
+Comp7
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S6, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion8
+	BNE TERMINAR
+	
+	
+Comprobacion8
+	VCMP.F32 S7, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion9
+	BLE Comp8
+Comp8
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S7, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion9
+	BNE TERMINAR
+
+	
+Comprobacion9
+	VCMP.F32 S8, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion10
+	BLE Comp9
+Comp9
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S8, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion10
+	BNE TERMINAR
+
+TERMINAR ;Función para frenar el programa al encontrarse un número menor a los 4 dígitos
+	B Stop
+
+Comprobacion10
+	VCMP.F32 S9, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion11
+	BLE Comp10
+Comp10
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S9, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion11
+	BNE Stop
+
+	
+Comprobacion11
+	VCMP.F32 S10, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion12
+	BLE Comp11
+Comp11
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S10, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion12
+	BNE Stop
+
+	
+Comprobacion12
+	VCMP.F32 S11, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion13
+	BLE Comp12
+Comp12
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S11, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion13
+	BNE Stop
+
+	
+Comprobacion13
+	VCMP.F32 S12, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion14
+	BLE Comp13
+Comp13
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S12, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion14
+	BNE Stop
+
+	
+Comprobacion14
+	VCMP.F32 S13, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion15
+	BLE Comp14
+Comp14
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S13, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion15
+	BNE Stop
+
+	
+Comprobacion15
+	VCMP.F32 S14, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Comprobacion16
+	BLE Comp15
+Comp15
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S14, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Comprobacion16
+	BNE Stop
+
+	
+Comprobacion16
+	VCMP.F32 S15, S30
+	VMRS APSR_nzcv, FPSCR
+	BHI Contador
+	BLE Comp16
+Comp16
+	VADD.F32 S18, S18, S29 
+	VCMP.F32 S15, S31
+	VMRS APSR_nzcv, FPSCR
+	BEQ Contador
+	BNE Stop
+
+;En S18 se almacena la suma de los números a ingresar en 0
+Contador ;CONTADOR PARA PODER REALIZAR EL PROMEDIO DE LOS NÚMEROS INGRESADOS
+	VSUB.F32 S19, S17, S18 ;S19 ALMACENA EL CONTADOR
+
+Suma 
+	VADD.F32 S23, S0, S1 
+	VADD.F32 S23, S23, S2
+	VADD.F32 S23, S23, S3
+	VADD.F32 S23, S23, S4
+	VADD.F32 S23, S23, S5
+	VADD.F32 S23, S23, S6
+	VADD.F32 S23, S23, S7
+	VADD.F32 S23, S23, S8
+	VADD.F32 S23, S23, S9
+	VADD.F32 S23, S23, S10
+	VADD.F32 S23, S23, S11
+	VADD.F32 S23, S23, S12
+	VADD.F32 S23, S23, S13
+	VADD.F32 S23, S23, S14
+	VADD.F32 S23, S23, S15
+	;S23 ALMACENA LA SUMA
+
+Promedio
+	VDIV.F32 S24, S23, S19
+	;S24 ALMACENA EL PROMEDIO 
+		
+Stop B Stop
+
+	ALIGN
+	END	
